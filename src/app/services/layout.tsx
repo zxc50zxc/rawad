@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { servicesPage, site } from "@/lib/site-content";
+import { site } from "@/lib/site-content";
 
 export const metadata: Metadata = {
   title: site.servicesMetadataTitle,
-  description: servicesPage.hero.sub,
+  description: site.servicesMetadataDescription,
 };
 
 export default function ServicesLayout({

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { Tajawal } from "next/font/google";
+import { Tajawal, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import { home, site } from "@/lib/site-content";
+import { site } from "@/lib/site-content";
 
 const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
@@ -10,9 +10,16 @@ const tajawal = Tajawal({
   display: "swap",
 });
 
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-plus-jakarta",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: site.homeMetadataTitle,
-  description: home.hero.sub,
+  description: site.homeMetadataDescription,
 };
 
 export default function RootLayout({
@@ -24,7 +31,7 @@ export default function RootLayout({
     <html
       lang="ar"
       dir="rtl"
-      className={`${tajawal.variable} scroll-smooth h-full antialiased`}
+      className={`${tajawal.variable} ${plusJakarta.variable} scroll-smooth h-full antialiased`}
     >
       <body className="min-h-full bg-background text-foreground font-sans">
         {children}

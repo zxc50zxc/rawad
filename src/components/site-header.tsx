@@ -1,33 +1,43 @@
+import Image from "next/image";
 import Link from "next/link";
-import { site } from "@/lib/site-content";
-
-/** Labels are substrings or exact phrases from site titles / sections. */
-const links = [
-  { href: "/services", label: "خدماتنا" },
-  { href: "/#contact", label: "تواصل معنا" },
-] as const;
+import { nav, site } from "@/lib/site-content";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/75 backdrop-blur-xl">
+      <div className="mx-auto flex h-16 max-w-6xl items-center gap-3 px-4 sm:h-[4.25rem] sm:gap-4 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="text-base font-extrabold tracking-tight text-foreground transition-colors hover:text-accent-2 sm:text-lg"
+          className="flex shrink-0 items-center gap-2.5 rounded-lg outline-none ring-offset-background transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-accent-2 focus-visible:ring-offset-2 sm:gap-3"
         >
-          {site.brand}
+          <Image
+            src={site.logoSrc}
+            alt={site.logoAlt}
+            width={44}
+            height={44}
+            className="h-9 w-9 sm:h-11 sm:w-11"
+            priority
+          />
+          <span className="hidden flex-col leading-tight sm:flex">
+            <span className="text-sm font-extrabold text-foreground sm:text-base">
+              {site.brandAr}
+            </span>
+            <span className="font-en text-[10px] font-medium text-muted-foreground sm:text-xs">
+              {site.brandEn}
+            </span>
+          </span>
         </Link>
         <nav
-          className="flex flex-wrap items-center justify-end gap-2 text-sm font-medium sm:gap-4 sm:text-base"
+          className="flex min-w-0 flex-1 justify-end gap-1 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-2 [&::-webkit-scrollbar]:hidden"
           aria-label="التنقل الرئيسي"
         >
-          {links.map((l) => (
+          {nav.map((item) => (
             <Link
-              key={l.href}
-              href={l.href}
-              className="rounded-lg px-2 py-2 text-muted-foreground transition-colors hover:bg-surface-elevated hover:text-foreground sm:px-3"
+              key={item.href}
+              href={item.href}
+              className="shrink-0 rounded-lg px-2 py-2 text-xs font-semibold text-muted-foreground transition hover:bg-surface-elevated hover:text-foreground sm:px-3 sm:text-sm"
             >
-              {l.label}
+              {item.label}
             </Link>
           ))}
         </nav>

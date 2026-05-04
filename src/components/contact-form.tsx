@@ -2,12 +2,12 @@
 
 import type { FormEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { home } from "@/lib/site-content";
+import { contactForm as cf } from "@/lib/site-content";
 import { softTransition } from "@/lib/motion-presets";
 
 export function ContactForm() {
   const reduce = useReducedMotion();
-  const f = home.contact.fields;
+  const f = cf.fields;
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -17,7 +17,7 @@ export function ContactForm() {
   return (
     <motion.form
       onSubmit={onSubmit}
-      className="mx-auto grid max-w-xl gap-4"
+      className="mx-auto grid w-full max-w-xl gap-4 lg:mx-0 lg:max-w-none"
       initial={reduce ? undefined : { opacity: 0, y: 12 }}
       whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10% 0px" }}
@@ -80,7 +80,7 @@ export function ContactForm() {
         transition={softTransition}
         className="min-h-11 w-full rounded-xl bg-surface-elevated px-5 py-2.5 text-base font-semibold text-foreground shadow-[0_0_0_1px_color-mix(in_srgb,var(--accent)_40%,transparent),0_0_28px_-10px_color-mix(in_srgb,var(--accent-2)_45%,transparent)] transition hover:shadow-[0_0_0_1px_color-mix(in_srgb,var(--accent-2)_50%,transparent),0_0_36px_-8px_color-mix(in_srgb,var(--accent-hot)_30%,transparent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:w-auto sm:min-w-[200px]"
       >
-        {home.contact.submit}
+        {cf.submit}
       </motion.button>
     </motion.form>
   );
